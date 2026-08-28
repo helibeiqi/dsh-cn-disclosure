@@ -1,0 +1,16 @@
+# dsh-cn-disclosure cordis bundle patch
+# 以「新增一行 mcp server」的形式注册到 dsh 的 mcp 服务列表。
+# 部署时只需把下列 paths 改成你本机实际路径即可。
+- insert:
+    - path: plugins.mcp-servers
+      items:
+        - id: mcp-cn-disclosure
+          name: A股信息披露结构化抽取
+          transport: stdio
+          command: !!js process.env.QUANT_MCP_NODE || process.execPath
+          args:
+            - "C:\\Users\\helib\\dsh-cn-disclosure\\cn-disclosure-mcp-server.mjs"
+          cwd: "C:\\Users\\helib\\dsh-cn-disclosure"
+          env:
+            DISCLOSURE_RULES: "C:\\Users\\helib\\dsh-cn-disclosure\\data\\disclosure-rules.json"
+          enabled: true
