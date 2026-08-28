@@ -1,0 +1,19 @@
+{
+  "name": "dsh-cn-disclosure",
+  "version": "0.1.0",
+  "description": "零依赖、本地优先的 A股 公告/年报 结构化抽取 MCP server —— 从披露文本中抽取披露类型、日期/金额/比例/股数等字段，并生成事件研究可用的结构化事件。无需 API key、无网络依赖。",
+  "type": "module",
+  "main": "cn-disclosure-mcp-server.mjs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/helibeiqi/dsh-cn-disclosure.git"
+  },
+  "keywords": ["dsh-plugin", "deepseek-harness", "A股", "信息披露", "公告", "年报", "结构化抽取", "事件研究"],
+  "author": "helibeiqi",
+  "license": "MIT",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}
