@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "version": "0.1.0",
+    "source": "curated-seed",
+    "note": "A股 信息披露事件类型 taxonomy + 跨格式抽取规则。设计为可扩展：增删 event_types / field_patterns 即可覆盖更多披露场景，无需改代码。"
+  },
+  "event_types": [
+    { "id": "earnings_pre", "name": "业绩预告/快报", "direction": "neutral", "category": "业绩", "aliases": ["业绩预告", "业绩快报", "归母净利润", "扣非净利润", "营业收入", "净利润"] },
+    { "id": "profit_warn", "name": "业绩变脸/修正", "direction": "negative", "category": "业绩", "aliases": ["业绩修正", "向下修正", "预亏", "预减", "由盈转亏", "修正公告"] },
+    { "id": "dividend", "name": "分红派息", "direction": "positive", "category": "股东回报", "aliases": ["分红", "派息", "每10股", "送红股", "转增", "现金红利"] },
+    { "id": "buyback", "name": "股份回购", "direction": "positive", "category": "股本", "aliases": ["回购", "股份回购", "回购股份"] },
+    { "id": "increase", "name": "股东/高管增持", "direction": "positive", "category": "股本", "aliases": ["增持", "举牌", "拟增持"] },
+    { "id": "decrease", "name": "股东/高管减持", "direction": "negative", "category": "股本", "aliases": ["减持", "拟减持", "股份减持", "询价转让"] },
+    { "id": "lockup_release", "name": "限售股解禁", "direction": "negative", "category": "股本", "aliases": ["解禁", "解除限售", "限售股上市", "限售股份上市流通"] },
+    { "id": "restructure", "name": "重大资产重组", "direction": "positive", "category": "资本运作", "aliases": ["重大资产重组", "重组", "资产注入", "资产置换"] },
+    { "id": "ma", "name": "并购/收购", "direction": "positive", "category": "资本运作", "aliases": ["收购", "并购", "股权收购", "受让"] },
+    { "id": "placement", "name": "定增/增发", "direction": "neutral", "category": "再融资", "aliases": ["定增", "非公开发行", "增发", "向特定对象发行"] },
+    { "id": "guarantee", "name": "对外担保", "direction": "negative", "category": "风险", "aliases": ["担保", "对外担保", "连带担保"] },
+    { "id": "litigation", "name": "诉讼/仲裁", "direction": "negative", "category": "风险", "aliases": ["诉讼", "仲裁", "起诉", "被起诉"] },
+    { "id": "win_bid", "name": "中标", "direction": "positive", "category": "经营", "aliases": ["中标", "中标通知书", "合计中标"] },
+    { "id": "contract", "name": "重大合同", "direction": "positive", "category": "经营", "aliases": ["签署合同", "重大合同", "签订合同", "项目合同"] },
+    { "id": "trading_halt", "name": "停牌/复牌", "direction": "neutral", "category": "交易", "aliases": ["停牌", "复牌", "临停", "停牌核查"] },
+    { "id": "incentive", "name": "股权激励", "direction": "positive", "category": "治理", "aliases": ["股权激励", "限制性股票", "股票期权", "员工持股"] },
+    { "id": "mgmt_change", "name": "高管/董事变动", "direction": "neutral", "category": "治理", "aliases": ["高管变动", "董事辞职", "总经理变更", "董事长", "董事会换届"] }
+  ],
+  "field_patterns": [
+    { "id": "date", "name": "日期", "regex": "\\d{4}[-年./]\\d{1,2}[-月./]\\d{1,2}", "unit": "date" },
+    { "id": "amount_yi", "name": "金额(亿元)", "regex": "([\\d.]+)\\s*亿元", "unit": "yi" },
+    { "id": "amount_wan", "name": "金额(万元)", "regex": "([\\d.]+)\\s*万元", "unit": "wan" },
+    { "id": "pct", "name": "百分比", "regex": "([\\+-]?[\\d.]+)\\s*%", "unit": "pct" },
+    { "id": "yoy", "name": "同比/增长率", "regex": "同比\\s*([\\+-]?[\\d.]+)\\s*%?", "unit": "pct" },
+    { "id": "eps", "name": "每股收益", "regex": "每股收益[为：: ]*([\\d.]+)\\s*元", "unit": "yuan" },
+    { "id": "dividend_ps", "name": "每股分红/送转", "regex": "每10股[^\\d]*([\\d.]+)\\s*元?", "unit": "yuan" },
+    { "id": "shares_wan", "name": "股数(万股)", "regex": "([\\d.]+)\\s*万股", "unit": "wan_share" },
+    { "id": "shares_yi", "name": "股数(亿股)", "regex": "([\\d.]+)\\s*亿股", "unit": "yi_share" }
+  ]
+}
